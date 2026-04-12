@@ -1,0 +1,25 @@
+# data processing and vizualisation
+numpy==1.24.3
+pandas==1.5.3
+matplotlib==3.7.2
+
+# for working with Kafka
+kafka-python==2.0.2
+
+# for scheduling and orchestration of data pipelines
+apache-airflow==2.9.0
+
+# for working with Delta Lake on Spark
+delta-spark==3.0.0
+
+# spark yeah
+pyspark==3.5.1
+
+# for reading .edf files from PhysioNet
+mne==1.4.0
+
+# for data quality checks
+great_expectations==0.18.0
+
+# python-dotenv for managing environment variables
+python-dotenv==0.19.2

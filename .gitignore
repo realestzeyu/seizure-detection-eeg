@@ -1,0 +1,9 @@
+# yeah upload these on github yeah
+# standard stuff
+.env
+venv/
+__pycache__/
+# data folders
+data/raw/
+data/delta/
+data/processed/

@@ -1,0 +1,42 @@
+services: 
+  broker:
+    image: apache/kafka:3.7.0
+    container_name: kafka
+    ports:
+      - "9092:9092" # for internal communication, 9092:9092 means host:container, so other containers can use kafka:9092 to communicate with this broker
+      - "29092:29092" # for external communication (host machine), 29092:29092 means host:container, so host machine can use localhost:29092 to communicate with this broker
+    environment:
+      KAFKA_NODE_ID: 1 # unique id
+      KAFKA_PROCESS_ROLES: broker,controller # this node is both broker(handles msgs) and controller (cluster management)
+      # external is for clients outside the docker network (host machine), plaintext is for internal communication (other docker containers), controller is for internal cluster communication
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,EXTERNAL://0.0.0.0:29092,CONTROLLER://0.0.0.0:9093 # where kafka opens ports to listen for incoming connections
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,EXTERNAL://localhost:29092 # how kafka shows itself to clients
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER # which listener is used for controller communication
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT # there is no security protocols (cuz its single machine) like SSL or TLS, all communications are plaintext
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093 # in kraft mode, controllers vote for leadership, but we only have one controller LOL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1 # for the below 3, by default, there should be 3 for fault tolerance, but we only have one broker, so we set it to 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_NUM_PARTITIONS: 4 # number of partitions for topics for parallelism
+      KAFKA_CLUSTER_ID: "9N8W2pywTzS3XNTzCuJUpg" # uuid for the cluster
+    healthcheck: # to check if topic is created and kafka is ready.
+      test: ["CMD", "/opt/kafka/bin/kafka-topics.sh", "--list", "--bootstrap-server", "localhost:9092"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+  # the init is to create kafka topic, so that the topic eeg-raw is ready for the producer (eeg-producer) to send data and consumer (eeg-consumer) to consume data, otherwise, if the topic does not exist, the producer will create the topic with default settings (1 partition and replication factor of 1), which is not what we want
+  kafka-init:
+    image: apache/kafka:3.7.0
+    depends_on:
+      broker:
+        condition: service_healthy # wait for the broker to be healthy before running the init container
+    entrypoint: >
+      bash -c "
+        /opt/kafka/bin/kafka-topics.sh --create --if-not-exists
+          --topic eeg-raw
+          --partitions 4
+          --replication-factor 1
+          --bootstrap-server kafka:9092
+      "
