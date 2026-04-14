@@ -17,7 +17,11 @@ message = {
     "sample_index": 12345,
 }
 
-future = producer.send("eeg-raw", message)
-result = future.get(timeout=10)
-producer.flush()
-print("MESSAGE SENT", result)
+future = producer.send(
+    "eeg-raw", message
+)  # async send, returns a future that can check if msg is sent or not
+result = future.get(
+    timeout=10
+)  # wait for the send to complete, timeout 10s so that u dont wait forever
+producer.flush()  # flush all pending msgs to kafka to ensure msgs are sent before producer closes
+print("MESSAGE SENT, i like feet", result)
