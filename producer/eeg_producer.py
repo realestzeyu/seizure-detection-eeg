@@ -27,6 +27,7 @@ raw = mne.io.read_raw_edf(file_path, preload=True)  # load the .edf file with mn
 # Data that we need to send
 sampling_rate = raw.info["sfreq"]  # get the sampling rate (256Hz)
 start = time.time()
+start_time_ms = int(time.time() * 1000)
 
 # loop structure should be sample by sample, across all channels. then sleep for 1/256s per sample
 for i in range(raw.n_times):
@@ -34,18 +35,18 @@ for i in range(raw.n_times):
         start=i, stop=i + 1, return_times=True
     )  # dont overload memory cuz it crashed jn
     # i represents the sample index
-    timestamp_ms = times[0] * 1000
+    timestamp_ms = start_time_ms + int(i * 1000 / sampling_rate)
     for j, channels in enumerate(raw.ch_names):
         datapoint = data[j][0]  # per sample, per channel datapoint
         message = {
             "patient_id": patient_id,
             "timestamp_ms": timestamp_ms,
             "channel": channels,
-            "microvolt_value": float(datapoint),
+            "voltage": float(datapoint),
             "sample_index": i,
         }
         future = producer.send("eeg-raw", message)  # async send to kafka
-        print(f"Sent sample {i}, channel {channels}, value {float(datapoint):.2f}")
+        print(f"Sent sample {i}, channel {channels}, value {float(datapoint)}")
         # this is a logs message to debug if messages are sent correctly, not necessary in prod.
         try:
             future.get(timeout=10)  # block until message is sent, with timeout
