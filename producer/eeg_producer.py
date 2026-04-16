@@ -26,8 +26,7 @@ raw = mne.io.read_raw_edf(file_path, preload=True)  # load the .edf file with mn
 
 # Data that we need to send
 sampling_rate = raw.info["sfreq"]  # get the sampling rate (256Hz)
-start = time.time()
-start_time_ms = int(time.time() * 1000)
+start_time_ms = int(raw.info["meas_date"].timestamp() * 1000)  # start time in ms
 
 # loop structure should be sample by sample, across all channels. then sleep for 1/256s per sample
 for i in range(raw.n_times):

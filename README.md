@@ -8,6 +8,11 @@ A real-time EEG seizure detection pipeline using Kafka, Spark, and Delta Lake.
 - Java (required for PySpark): `sudo apt install default-jdk`
 - Docker and Docker Compose (for Kafka)
 
+> **Windows only:** PySpark requires Hadoop's `winutils.exe` even when not using HDFS.
+> 1. Download all the files in `hadoop-3.3.5/bin/` from https://github.com/cdarlint/winutils 
+> 2. Place it at `C:\hadoop` (create one urself)
+> 3. Set the environment variable: `HADOOP_HOME=C:\hadoop`
+
 ## Setup
 
 ### 1. Clone the repo
