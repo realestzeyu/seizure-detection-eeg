@@ -48,9 +48,7 @@ eeg_raw_df = (
         "kafka.bootstrap.servers", "localhost:29092"
     )  # connect to EXTERNAL listener
     .option("subscribe", "eeg-raw")  # subscribe tells spark which topic to read from
-    .option(
-        "startingOffsets", "earliest"
-    )  # IMPT: SET TO latest if prod. this line means to start from the earliest message in the topic, to not miss any data.
+    .option("startingOffsets", "earliest")
     .option("failOnDataLoss", "false")
     .load()
 )
@@ -80,8 +78,9 @@ eeg_parsed_df = eeg_parsed_df.withColumn(
 
 # a little confusing here, but we are extracting the mean, stddev, min, max microvolt values per channel, per patient, in a tumbling window of 5 seconds.
 eeg_analytic_df = (
-    eeg_parsed_df.withWatermark(
-        "event_time", "10 seconds"
+    eeg_parsed_df
+    .withWatermark(
+        "event_time", "3 seconds"
     )  # watermark is the threshold for how late data can arrive, so irl, this 10s can be like the network delay in the hospital network
     .groupBy(
         window("event_time", "5 seconds"), "patient_id", "channel"
@@ -111,7 +110,7 @@ eeg_analytic_df = eeg_analytic_df.withColumn(
 
 # user defined function that has the following logic below. batch_id is not used but required for foreachBatch below
 def process_batch(batch_df, batch_id):
-    print(f"Processing batch {batch_id} with {batch_df.count()} records")
+    # print(f"Processing batch {batch_id} with {batch_df.count()} records")
 
     # extract window start and end times
     batch_df = (
