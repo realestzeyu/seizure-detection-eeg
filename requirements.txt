@@ -18,8 +18,11 @@ pyspark==3.5.1
 # for reading .edf files from PhysioNet
 mne==1.4.0
 
-# for data quality checks
-great_expectations==0.18.0
+# for parquet file handling
+pyarrow==14.0.0
+
+# for dbt with Spark
+dbt-spark==1.7.0
 
 # python-dotenv for managing environment variables
 python-dotenv==0.19.2

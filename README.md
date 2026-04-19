@@ -37,3 +37,17 @@ This will take a long ass time due to physionet server being completely ass.
 ```bash
 wget -r -N -c -np https://physionet.org/files/chbmit/1.0.0/chb01/ -P data/raw/
 ```
+Where RAM is used:
+- mne loads the chunk into RAM temporarily (you control this with CHUNK_SIZE)
+- Kafka stores messages on disk (/var/lib/kafka/data inside Docker) but the OS caches hot data in RAM via page cache
+- Spark JVM heap holds open window state + shuffle buffers
+- Delta writes go to SSD, then RAM is freed
+
+Where CPU is used:
+- Producer: numpy slicing + JSON serialization (Python, single threaded)
+- Spark: deserializing JSON, computing aggregations, writing Parquet (JVM, can use multiple cores)
+
+Where SSD is used:
+- Raw .edf files — read once per producer run
+- Kafka log files — written as messages arrive, deleted after retention period
+- Delta tables — final output, stays permanently

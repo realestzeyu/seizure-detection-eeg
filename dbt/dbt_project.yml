@@ -1,0 +1,16 @@
+name: eeg_pipeline
+version: "1.0.0"
+config-version: 2
+
+profile: eeg_pipeline
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  eeg_pipeline:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

@@ -12,6 +12,7 @@ from pyspark.sql.functions import (
     to_timestamp,
     to_date,
     window,
+    explode,
 )
 from pyspark.sql.types import (
     StructType,
@@ -20,6 +21,7 @@ from pyspark.sql.types import (
     DoubleType,
     IntegerType,
     LongType,
+    MapType,
 )
 
 spark = (
@@ -58,9 +60,8 @@ schema = StructType(
     [
         StructField("patient_id", StringType(), True),
         StructField("timestamp_ms", LongType(), True),
-        StructField("channel", StringType(), True),
-        StructField("voltage", DoubleType(), True),
         StructField("sample_index", IntegerType(), True),
+        StructField("channels", MapType(StringType(), DoubleType()), True),
     ]
 )
 
@@ -68,8 +69,11 @@ schema = StructType(
 eeg_parsed_df = eeg_raw_df.select(
     from_json(col=col("value").cast("string"), schema=schema).alias("data")
 ).select(
-    "data.*"
-)  # this selects all the fields from the parsed JSON and flattens the dataframe
+    col("data.patient_id"),
+    col("data.timestamp_ms"),
+    col("data.sample_index"),
+    explode(col("data.channels")).alias("channel", "voltage"),
+)  # explode the channels into channel and voltage col  # this selects all the fields from the parsed JSON and flattens the dataframe
 
 # withColumn creates a new column event_time that is just in seconds unit
 eeg_parsed_df = eeg_parsed_df.withColumn(
@@ -78,8 +82,7 @@ eeg_parsed_df = eeg_parsed_df.withColumn(
 
 # a little confusing here, but we are extracting the mean, stddev, min, max microvolt values per channel, per patient, in a tumbling window of 5 seconds.
 eeg_analytic_df = (
-    eeg_parsed_df
-    .withWatermark(
+    eeg_parsed_df.withWatermark(
         "event_time", "3 seconds"
     )  # watermark is the threshold for how late data can arrive, so irl, this 10s can be like the network delay in the hospital network
     .groupBy(
@@ -103,7 +106,7 @@ eeg_analytic_df = (
 eeg_analytic_df = eeg_analytic_df.withColumn(
     "alert_reason",
     when(col("spike_count") > 10, "spike_threshold")
-    .when(col("stddev_uv") > 0.00001, "high_variance")
+    .when(col("stddev_uv") > 0.0001, "high_variance")
     .otherwise(None),
 )
 

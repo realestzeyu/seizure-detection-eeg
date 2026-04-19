@@ -49,22 +49,27 @@ start_time_ms = int(raw.info["meas_date"].timestamp() * 1000)  # start time in m
 #         # print(f"Sent sample {i}, channel {channels}, value {float(datapoint)}")
 #     # time.sleep(1 / sampling_rate)
 
-CHUNK_SIZE = 2560 
-
-for chunk_start in range(0, raw.n_times, CHUNK_SIZE):
-    chunk_end = min(chunk_start + CHUNK_SIZE, raw.n_times)
-    data_chunk, times_chunk = raw.get_data(start=chunk_start, stop=chunk_end, return_times=True)
+CHUNK_SIZE = 2560
+start_sample = int((2996 - 30) * sampling_rate)  # 30s before seizure onset
+end_sample = int((3036 + 30) * sampling_rate)  # 30s after seizure end
+print(f"Start sample: {start_sample}, End sample: {end_sample}")
+for chunk_start in range(start_sample, end_sample, CHUNK_SIZE):
+# for chunk_start in range(0, raw.n_times, CHUNK_SIZE):
+    chunk_end = min(chunk_start + CHUNK_SIZE, end_sample)
+    data_chunk, times_chunk = raw.get_data(
+        start=chunk_start, stop=chunk_end, return_times=True
+    )
     timestamp_ms_chunk = start_time_ms + (times_chunk * 1000).astype(int)
     for k in range(chunk_end - chunk_start):
-        for j, channel in enumerate(raw.ch_names):
-            message = {
-                "patient_id": patient_id,
-                "timestamp_ms": int(timestamp_ms_chunk[k]),
-                "channel": channel,
-                "voltage": float(data_chunk[j][k]),
-                "sample_index": chunk_start + k,
-            }
-            producer.send("eeg-raw", message)
+        message = {
+            "patient_id": patient_id,
+            "timestamp_ms": int(timestamp_ms_chunk[k]),
+            "sample_index": chunk_start + k,
+            "channels": {
+                ch: float(val) for ch, val in zip(raw.ch_names, data_chunk[:, k])
+            },
+        }
+        producer.send("eeg-raw", message)
     # time.sleep(CHUNK_SIZE / sampling_rate)  # for real time simulation
 
 producer.flush()  # flush all pending msgs to kafka to ensure msgs are sent before producer closes

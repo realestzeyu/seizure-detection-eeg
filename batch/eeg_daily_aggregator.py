@@ -46,9 +46,9 @@ def parse_summary_txt(file_path) -> pd.DataFrame:
             seizureendtime = int((block[5].split(':',1)[1]).split()[0]) * 1000
 
             edf_dir = os.path.dirname(file_path)        
-            if not os.path.exists(f"{edf_dir}/{filename}"):
-                print(f"EDF file {filename} not found in {edf_dir}, skipping this record.")
-                continue                                                       
+            # if not os.path.exists(f"{edf_dir}/{filename}"):
+            #     print(f"EDF file {filename} not found in {edf_dir}, skipping this record.")
+            #     continue                                                       
             raw = mne.io.read_raw_edf(f"{edf_dir}/{filename}", preload=False) 
             meas_date_ms = int(raw.info["meas_date"].timestamp() * 1000) 
 
@@ -82,25 +82,40 @@ spark = (
 eeg_alerts_spark_df = spark.read.format("delta").load("./data/delta/eeg_alerts")
 seizure_annotations_spark_df = spark.createDataFrame(
     parse_summary_txt(
-        f'data/raw/physionet.org/files/chbmit/1.0.0/chb01/{patient_id}-summary.txt'
+        f'data/raw/physionet.org/files/chbmit/1.0.0/{patient_id}/{patient_id}-summary.txt'
         )
     )
 
-joined_df = eeg_alerts_spark_df.join(
-    seizure_annotations_spark_df,
-    (col("window_start") < col("seizure_end_ms")) & (col("window_end") > col("seizure_start_ms"))
+alerts = eeg_alerts_spark_df.alias("alerts") # to give alias to tables
+annotations = seizure_annotations_spark_df.alias("annotations")
+
+joined_df = alerts.join(
+    annotations,
+    (col("alerts.window_start") < col("annotations.seizure_end_ms")) & # if alert window is within seizure start and end time, then we consider it as detected
+    (col("alerts.window_end") > col("annotations.seizure_start_ms")) & 
+    (col("alerts.patient_id") == col("annotations.patient_id")),
 )
 
-# eeg_alerts_spark_df.select("window_start", "window_end").show(3)
-# seizure_annotations_spark_df.select("seizure_start_ms","seizure_end_ms").show()  
+detected_df = joined_df.select("annotations.patient_id", "annotations.recording_file", "annotations.seizure_start_ms", "annotations.seizure_end_ms").distinct()
+detected_count = detected_df.count()
+total_seizures = seizure_annotations_spark_df.count()
+detection_rate = (detected_count / total_seizures) * 100
+print(f"Total seizures: {total_seizures}")
+print(f"Detected seizures: {detected_count}")
+print(f"Detection rate: {detection_rate:.2f}%")
 
+false_positives_df = alerts.join(
+    annotations,
+    (col("alerts.window_start") < col("annotations.seizure_end_ms")) & 
+    (col("alerts.window_end") > col("annotations.seizure_start_ms")) & 
+    (col("alerts.patient_id") == col("annotations.patient_id")),
+    how="left_anti"  # left_anti join returns only NO MATCH 
+)
+print(f"False positives: {false_positives_df.count()}")
+print(f"False positive rate: {(false_positives_df.count() / alerts.count()) * 100:.2f}%")
 
-eeg_alerts_spark_df.printSchema()                                                                  
-seizure_annotations_spark_df.printSchema()                                                         
-                                                                                                    
-eeg_alerts_spark_df.select("window_start", "window_end").show(3)                                   
-seizure_annotations_spark_df.show()  
-
-joined_df.show()
-
-eeg_alerts_spark_df.select("window_start", "window_end").orderBy("window_start",ascending=False).show(5, truncate=False)                                                                                    
+eeg_alerts_spark_df.show(5)
+joined_df.show(5)
+seizure_annotations_spark_df.show(5)
+detected_df.show(5)
+false_positives_df.show(5)

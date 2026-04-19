@@ -14,6 +14,15 @@ rm -rf ./data/delta/eeg_alerts
 echo "Clearing Spark checkpoints..."
 rm -rf ./data/checkpoints
 
+# powershell commands for windows users
+
+Write-Host "Clearing Delta tables..."
+Remove-Item -Recurse -Force ./data/delta/eeg_features -ErrorAction SilentlyContinue
+Remove-Item -Recurse -Force ./data/delta/eeg_alerts -ErrorAction SilentlyContinue
+
+Write-Host "Clearing Spark checkpoints..."
+Remove-Item -Recurse -Force ./data/checkpoints -ErrorAction SilentlyContinue
+
 echo "Done. Now run:"
 echo "  1. docker compose up -d        (start Kafka)"
 docker compose up -d
