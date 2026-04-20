@@ -3,8 +3,15 @@ eeg_pipeline:
   outputs:
     dev:
       type: spark
+      # lightweight JDBC Thrift server for testing purposes, because we dont have a real data warehouse. this comes with Spark and acts like a data warehouse
       method: thrift
       host: localhost
       port: 10000
       schema: default
       threads: 1
+
+# export SPARK_HOME=/home/zeyu/seizure-detection-eeg/venv/lib/python3.11/site-packages/pyspark
+# $SPARK_HOME/sbin/start-thriftserver.sh \
+#   --packages io.delta:delta-spark_2.12:3.2.0,org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0 \
+#   --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
+#   --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog

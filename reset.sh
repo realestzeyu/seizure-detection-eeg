@@ -8,20 +8,20 @@ echo "Stopping Kafka..."
 echo "docker compose down if needed"
 
 echo "Clearing Delta tables..."
-rm -rf ./data/delta/eeg_features
-rm -rf ./data/delta/eeg_alerts
+rm -rf ./data/delta/eeg_features/*
+rm -rf ./data/delta/eeg_alerts/*
 
 echo "Clearing Spark checkpoints..."
 rm -rf ./data/checkpoints
 
 # powershell commands for windows users
 
-Write-Host "Clearing Delta tables..."
-Remove-Item -Recurse -Force ./data/delta/eeg_features -ErrorAction SilentlyContinue
-Remove-Item -Recurse -Force ./data/delta/eeg_alerts -ErrorAction SilentlyContinue
+Write-Output "Clearing Delta tables..."
+Remove-Item -Recurse -Force ./data/delta/eeg_features/*
+Remove-Item -Recurse -Force ./data/delta/eeg_alerts/*
 
-Write-Host "Clearing Spark checkpoints..."
-Remove-Item -Recurse -Force ./data/checkpoints -ErrorAction SilentlyContinue
+Write-Output "Clearing Spark checkpoints..."
+Remove-Item -Recurse -Force ./data/checkpoints/*
 
 echo "Done. Now run:"
 echo "  1. docker compose up -d        (start Kafka)"
