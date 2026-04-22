@@ -1,0 +1,679 @@
+[0m21:39:21.362022 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C105F7A590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C105C13C90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C1062BFF50>]}
+
+
+============================== 21:39:21.369658 | 5e30a737-64b6-4200-ac80-02322f03a7c3 ==============================
+[0m21:39:21.369658 [info ] [MainThread]: Running with dbt=1.7.9
+[0m21:39:21.371225 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': '.', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'use_colors': 'True', 'invocation_command': 'dbt debug --profiles-dir .', 'use_experimental_parser': 'False', 'log_path': 'C:\\Users\\neyma\\eeg-pipeline\\dbt\\logs'}
+[0m21:39:21.373275 [info ] [MainThread]: dbt version: 1.7.9
+[0m21:39:21.374275 [info ] [MainThread]: python version: 3.11.9
+[0m21:39:21.375276 [info ] [MainThread]: python path: C:\Users\neyma\eeg-pipeline\venv\Scripts\python.exe
+[0m21:39:21.376276 [info ] [MainThread]: os info: Windows-10-10.0.26200-SP0
+[0m21:39:22.140045 [info ] [MainThread]: Using profiles dir at .
+[0m21:39:22.141147 [info ] [MainThread]: Using profiles.yml file at .\profiles.yml
+[0m21:39:22.142225 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\neyma\eeg-pipeline\dbt\dbt_project.yml
+[0m21:39:22.159712 [info ] [MainThread]: adapter type: duckdb
+[0m21:39:22.161557 [info ] [MainThread]: adapter version: 1.7.0
+[0m21:39:22.276372 [info ] [MainThread]: Configuration:
+[0m21:39:22.278897 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m21:39:22.278897 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m21:39:22.280479 [info ] [MainThread]: Required dependencies:
+[0m21:39:22.281488 [debug] [MainThread]: Executing "git --help"
+[0m21:39:22.359719 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m21:39:22.360718 [debug] [MainThread]: STDERR: "b''"
+[0m21:39:22.361727 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m21:39:22.362728 [info ] [MainThread]: Connection:
+[0m21:39:22.362728 [info ] [MainThread]:   database: eeg
+[0m21:39:22.364137 [info ] [MainThread]:   schema: main
+[0m21:39:22.365296 [info ] [MainThread]:   path: ../eeg.duckdb
+[0m21:39:22.366310 [info ] [MainThread]:   config_options: None
+[0m21:39:22.367822 [info ] [MainThread]:   extensions: ['delta']
+[0m21:39:22.368853 [info ] [MainThread]:   settings: None
+[0m21:39:22.369869 [info ] [MainThread]:   external_root: .
+[0m21:39:22.370561 [info ] [MainThread]:   use_credential_provider: None
+[0m21:39:22.372091 [info ] [MainThread]:   attach: None
+[0m21:39:22.373201 [info ] [MainThread]:   filesystems: None
+[0m21:39:22.373201 [info ] [MainThread]:   remote: None
+[0m21:39:22.374440 [info ] [MainThread]:   plugins: None
+[0m21:39:22.375927 [info ] [MainThread]:   disable_transactions: False
+[0m21:39:22.376993 [info ] [MainThread]: Registered adapter: duckdb=1.7.0
+[0m21:39:22.379260 [debug] [MainThread]: Acquiring new duckdb connection 'debug'
+[0m21:39:22.380421 [debug] [MainThread]: Using duckdb connection "debug"
+[0m21:39:22.381930 [debug] [MainThread]: On debug: select 1 as id
+[0m21:39:22.382947 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m21:39:28.038723 [debug] [MainThread]: SQL status: OK in 6.0 seconds
+[0m21:39:28.040732 [debug] [MainThread]: On debug: Close
+[0m21:39:28.045876 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m21:39:28.046875 [info ] [MainThread]: [32mAll checks passed![0m
+[0m21:39:28.049028 [debug] [MainThread]: Command `dbt debug` succeeded at 21:39:28.049028 after 6.89 seconds
+[0m21:39:28.050555 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m21:39:28.050555 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C0FED87650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C0FED87510>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C105C1A490>]}
+[0m21:39:28.051567 [debug] [MainThread]: Flushing usage events
+[0m22:42:28.525701 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022142DC5010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022142BEC8D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022142DC4510>]}
+
+
+============================== 22:42:28.541096 | 2690389d-f6a3-4b99-af0a-58f5d2b50c51 ==============================
+[0m22:42:28.541096 [info ] [MainThread]: Running with dbt=1.7.9
+[0m22:42:28.544142 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'no_print': 'None', 'version_check': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\neyma\\eeg-pipeline\\dbt', 'invocation_command': 'dbt debug', 'indirect_selection': 'eager', 'use_colors': 'True', 'use_experimental_parser': 'False', 'log_path': 'C:\\Users\\neyma\\eeg-pipeline\\dbt\\logs'}
+[0m22:42:28.546148 [info ] [MainThread]: dbt version: 1.7.9
+[0m22:42:28.548761 [info ] [MainThread]: python version: 3.11.9
+[0m22:42:28.549760 [info ] [MainThread]: python path: C:\Users\neyma\eeg-pipeline\venv\Scripts\python.exe
+[0m22:42:28.552276 [info ] [MainThread]: os info: Windows-10-10.0.26200-SP0
+[0m22:42:29.068335 [info ] [MainThread]: Using profiles dir at C:\Users\neyma\eeg-pipeline\dbt
+[0m22:42:29.070666 [info ] [MainThread]: Using profiles.yml file at C:\Users\neyma\eeg-pipeline\dbt\profiles.yml
+[0m22:42:29.071675 [info ] [MainThread]: Using dbt_project.yml file at C:\Users\neyma\eeg-pipeline\dbt\dbt_project.yml
+[0m22:42:29.075245 [info ] [MainThread]: adapter type: duckdb
+[0m22:42:29.076243 [info ] [MainThread]: adapter version: 1.7.0
+[0m22:42:29.285302 [info ] [MainThread]: Configuration:
+[0m22:42:29.287829 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m22:42:29.289348 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m22:42:29.290349 [info ] [MainThread]: Required dependencies:
+[0m22:42:29.292348 [debug] [MainThread]: Executing "git --help"
+[0m22:42:29.397670 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m22:42:29.398707 [debug] [MainThread]: STDERR: "b''"
+[0m22:42:29.401103 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m22:42:29.402990 [info ] [MainThread]: Connection:
+[0m22:42:29.404019 [info ] [MainThread]:   database: eeg
+[0m22:42:29.405488 [info ] [MainThread]:   schema: main
+[0m22:42:29.408015 [info ] [MainThread]:   path: ../eeg.duckdb
+[0m22:42:29.409094 [info ] [MainThread]:   config_options: None
+[0m22:42:29.410687 [info ] [MainThread]:   extensions: ['delta']
+[0m22:42:29.412683 [info ] [MainThread]:   settings: None
+[0m22:42:29.414684 [info ] [MainThread]:   external_root: .
+[0m22:42:29.417202 [info ] [MainThread]:   use_credential_provider: None
+[0m22:42:29.418756 [info ] [MainThread]:   attach: None
+[0m22:42:29.420158 [info ] [MainThread]:   filesystems: None
+[0m22:42:29.421176 [info ] [MainThread]:   remote: None
+[0m22:42:29.423261 [info ] [MainThread]:   plugins: None
+[0m22:42:29.425264 [info ] [MainThread]:   disable_transactions: False
+[0m22:42:29.427816 [info ] [MainThread]: Registered adapter: duckdb=1.7.0
+[0m22:42:29.430634 [debug] [MainThread]: Acquiring new duckdb connection 'debug'
+[0m22:42:29.433124 [debug] [MainThread]: Using duckdb connection "debug"
+[0m22:42:29.434127 [debug] [MainThread]: On debug: select 1 as id
+[0m22:42:29.435315 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m22:42:31.022976 [debug] [MainThread]: SQL status: OK in 2.0 seconds
+[0m22:42:31.027140 [debug] [MainThread]: On debug: Close
+[0m22:42:31.035853 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m22:42:31.038339 [info ] [MainThread]: [32mAll checks passed![0m
+[0m22:42:31.041410 [debug] [MainThread]: Command `dbt debug` succeeded at 22:42:31.041410 after 2.85 seconds
+[0m22:42:31.044492 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m22:42:31.045891 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000022142BECBD0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002213B8A7650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002214277B7D0>]}
+[0m22:42:31.046949 [debug] [MainThread]: Flushing usage events
+[0m22:54:51.792169 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B1E8AD50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B1EC5810>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B1EC5C90>]}
+
+
+============================== 22:54:51.798732 | 757d22b5-e26e-416a-8bfe-63d14445fbd5 ==============================
+[0m22:54:51.798732 [info ] [MainThread]: Running with dbt=1.7.9
+[0m22:54:51.801385 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\neyma\\eeg-pipeline\\dbt', 'invocation_command': 'dbt run --select staging', 'use_colors': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'log_path': 'C:\\Users\\neyma\\eeg-pipeline\\dbt\\logs'}
+[0m22:54:52.344115 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '757d22b5-e26e-416a-8bfe-63d14445fbd5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B1EA0C90>]}
+[0m22:54:52.482937 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '757d22b5-e26e-416a-8bfe-63d14445fbd5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B1498D50>]}
+[0m22:54:52.485125 [info ] [MainThread]: Registered adapter: duckdb=1.7.0
+[0m22:54:52.523543 [debug] [MainThread]: checksum: 6ff0d83c3b46f350064523b4e08d9241403ad71d606ba49c4e670afba3668b39, vars: {}, profile: , target: , version: 1.7.9
+[0m22:54:52.525542 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m22:54:52.527539 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '757d22b5-e26e-416a-8bfe-63d14445fbd5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B314FAD0>]}
+[0m22:54:55.993242 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.eeg_pipeline.marts
+[0m22:54:56.001648 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '757d22b5-e26e-416a-8bfe-63d14445fbd5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B3127A50>]}
+[0m22:54:56.024391 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '757d22b5-e26e-416a-8bfe-63d14445fbd5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B336B210>]}
+[0m22:54:56.027127 [info ] [MainThread]: Found 2 models, 0 sources, 0 exposures, 0 metrics, 391 macros, 0 groups, 0 semantic models
+[0m22:54:56.035977 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '757d22b5-e26e-416a-8bfe-63d14445fbd5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B1EDD690>]}
+[0m22:54:56.043438 [info ] [MainThread]: 
+[0m22:54:56.050876 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m22:54:56.055701 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_eeg'
+[0m22:54:56.092764 [debug] [ThreadPool]: Using duckdb connection "list_eeg"
+[0m22:54:56.093839 [debug] [ThreadPool]: On list_eeg: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "connection_name": "list_eeg"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where catalog_name = '"eeg"'
+    
+  
+  
+[0m22:54:56.096521 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:54:56.295118 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m22:54:56.298118 [debug] [ThreadPool]: On list_eeg: Close
+[0m22:54:56.304115 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_eeg, now create_eeg_main)
+[0m22:54:56.306119 [debug] [ThreadPool]: Creating schema "database: "eeg"
+schema: "main"
+"
+[0m22:54:56.312118 [debug] [ThreadPool]: Using duckdb connection "create_eeg_main"
+[0m22:54:56.313119 [debug] [ThreadPool]: On create_eeg_main: BEGIN
+[0m22:54:56.315118 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m22:54:56.463194 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m22:54:56.464195 [debug] [ThreadPool]: Using duckdb connection "create_eeg_main"
+[0m22:54:56.465194 [debug] [ThreadPool]: On create_eeg_main: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "connection_name": "create_eeg_main"} */
+create schema if not exists "eeg"."main"
+[0m22:54:56.469195 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m22:54:56.470708 [debug] [ThreadPool]: On create_eeg_main: COMMIT
+[0m22:54:56.471710 [debug] [ThreadPool]: Using duckdb connection "create_eeg_main"
+[0m22:54:56.472711 [debug] [ThreadPool]: On create_eeg_main: COMMIT
+[0m22:54:56.473425 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m22:54:56.474435 [debug] [ThreadPool]: On create_eeg_main: Close
+[0m22:54:56.481541 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_eeg_main'
+[0m22:54:56.488687 [debug] [ThreadPool]: Using duckdb connection "list_eeg_main"
+[0m22:54:56.489697 [debug] [ThreadPool]: On list_eeg_main: BEGIN
+[0m22:54:56.490814 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:54:56.644529 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m22:54:56.644529 [debug] [ThreadPool]: Using duckdb connection "list_eeg_main"
+[0m22:54:56.645994 [debug] [ThreadPool]: On list_eeg_main: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "connection_name": "list_eeg_main"} */
+select
+      'eeg' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where table_schema = 'main'
+    and table_catalog = 'eeg'
+  
+[0m22:54:56.659751 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m22:54:56.662099 [debug] [ThreadPool]: On list_eeg_main: ROLLBACK
+[0m22:54:56.665099 [debug] [ThreadPool]: Failed to rollback 'list_eeg_main'
+[0m22:54:56.666103 [debug] [ThreadPool]: On list_eeg_main: Close
+[0m22:54:56.671768 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '757d22b5-e26e-416a-8bfe-63d14445fbd5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B3270710>]}
+[0m22:54:56.672768 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:54:56.673771 [debug] [MainThread]: On master: BEGIN
+[0m22:54:56.675403 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m22:54:56.838039 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m22:54:56.839072 [debug] [MainThread]: On master: COMMIT
+[0m22:54:56.839072 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:54:56.840076 [debug] [MainThread]: On master: COMMIT
+[0m22:54:56.841513 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m22:54:56.842023 [debug] [MainThread]: On master: Close
+[0m22:54:56.847701 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m22:54:56.848923 [info ] [MainThread]: 
+[0m22:54:56.856276 [debug] [Thread-1 (]: Began running node model.eeg_pipeline.stg_eeg_alerts
+[0m22:54:56.857722 [debug] [Thread-2 (]: Began running node model.eeg_pipeline.stg_eeg_features
+[0m22:54:56.858727 [info ] [Thread-1 (]: 1 of 2 START sql view model main.stg_eeg_alerts ................................ [RUN]
+[0m22:54:56.861113 [info ] [Thread-2 (]: 2 of 2 START sql view model main.stg_eeg_features .............................. [RUN]
+[0m22:54:56.862195 [debug] [Thread-1 (]: Acquiring new duckdb connection 'model.eeg_pipeline.stg_eeg_alerts'
+[0m22:54:56.864563 [debug] [Thread-2 (]: Acquiring new duckdb connection 'model.eeg_pipeline.stg_eeg_features'
+[0m22:54:56.865566 [debug] [Thread-1 (]: Began compiling node model.eeg_pipeline.stg_eeg_alerts
+[0m22:54:56.866753 [debug] [Thread-2 (]: Began compiling node model.eeg_pipeline.stg_eeg_features
+[0m22:54:56.876371 [debug] [Thread-1 (]: Writing injected SQL for node "model.eeg_pipeline.stg_eeg_alerts"
+[0m22:54:56.882133 [debug] [Thread-2 (]: Writing injected SQL for node "model.eeg_pipeline.stg_eeg_features"
+[0m22:54:56.891132 [debug] [Thread-1 (]: Timing info for model.eeg_pipeline.stg_eeg_alerts (compile): 22:54:56.867851 => 22:54:56.890130
+[0m22:54:56.893128 [debug] [Thread-2 (]: Timing info for model.eeg_pipeline.stg_eeg_features (compile): 22:54:56.878186 => 22:54:56.892132
+[0m22:54:56.894734 [debug] [Thread-1 (]: Began executing node model.eeg_pipeline.stg_eeg_alerts
+[0m22:54:56.897067 [debug] [Thread-2 (]: Began executing node model.eeg_pipeline.stg_eeg_features
+[0m22:54:56.950415 [debug] [Thread-1 (]: Writing runtime sql for node "model.eeg_pipeline.stg_eeg_alerts"
+[0m22:54:56.957862 [debug] [Thread-2 (]: Writing runtime sql for node "model.eeg_pipeline.stg_eeg_features"
+[0m22:54:56.963865 [debug] [Thread-1 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_alerts"
+[0m22:54:56.964863 [debug] [Thread-2 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_features"
+[0m22:54:56.965865 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: BEGIN
+[0m22:54:56.966863 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: BEGIN
+[0m22:54:56.967863 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m22:54:56.968862 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m22:54:57.142620 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m22:54:57.143629 [debug] [Thread-2 (]: SQL status: OK in 0.0 seconds
+[0m22:54:57.144632 [debug] [Thread-1 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_alerts"
+[0m22:54:57.145631 [debug] [Thread-2 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_features"
+[0m22:54:57.147631 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.stg_eeg_alerts"} */
+
+  
+  create view "eeg"."main"."stg_eeg_alerts__dbt_tmp" as (
+    SELECT *
+FROM delta_scan('../data/delta/eeg_alerts/')
+  );
+
+[0m22:54:57.148631 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.stg_eeg_features"} */
+
+  
+  create view "eeg"."main"."stg_eeg_features__dbt_tmp" as (
+    SELECT *
+FROM delta_scan('../data/delta/eeg_features/')
+  );
+
+[0m22:54:57.188373 [debug] [Thread-2 (]: SQL status: OK in 0.0 seconds
+[0m22:54:57.188922 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m22:54:57.198964 [debug] [Thread-2 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_features"
+[0m22:54:57.207175 [debug] [Thread-1 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_alerts"
+[0m22:54:57.208259 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.stg_eeg_features"} */
+alter view "eeg"."main"."stg_eeg_features__dbt_tmp" rename to "stg_eeg_features"
+[0m22:54:57.209322 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.stg_eeg_alerts"} */
+alter view "eeg"."main"."stg_eeg_alerts__dbt_tmp" rename to "stg_eeg_alerts"
+[0m22:54:57.213097 [debug] [Thread-2 (]: SQL status: OK in 0.0 seconds
+[0m22:54:57.213626 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m22:54:57.237875 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: COMMIT
+[0m22:54:57.240715 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: COMMIT
+[0m22:54:57.241831 [debug] [Thread-2 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_features"
+[0m22:54:57.242880 [debug] [Thread-1 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_alerts"
+[0m22:54:57.244486 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: COMMIT
+[0m22:54:57.245784 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: COMMIT
+[0m22:54:57.253445 [debug] [Thread-2 (]: SQL status: OK in 0.0 seconds
+[0m22:54:57.261553 [debug] [Thread-2 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_features"
+[0m22:54:57.262547 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m22:54:57.263551 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.stg_eeg_features"} */
+drop view if exists "eeg"."main"."stg_eeg_features__dbt_backup" cascade
+[0m22:54:57.268546 [debug] [Thread-1 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_alerts"
+[0m22:54:57.269571 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.stg_eeg_alerts"} */
+drop view if exists "eeg"."main"."stg_eeg_alerts__dbt_backup" cascade
+[0m22:54:57.270991 [debug] [Thread-2 (]: SQL status: OK in 0.0 seconds
+[0m22:54:57.272026 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m22:54:57.274269 [debug] [Thread-2 (]: Timing info for model.eeg_pipeline.stg_eeg_features (execute): 22:54:56.950415 => 22:54:57.274269
+[0m22:54:57.278105 [debug] [Thread-1 (]: Timing info for model.eeg_pipeline.stg_eeg_alerts (execute): 22:54:56.898241 => 22:54:57.277096
+[0m22:54:57.279107 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: Close
+[0m22:54:57.280109 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: Close
+[0m22:54:57.282109 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '757d22b5-e26e-416a-8bfe-63d14445fbd5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B3379A90>]}
+[0m22:54:57.283107 [info ] [Thread-2 (]: 2 of 2 OK created sql view model main.stg_eeg_features ......................... [[32mOK[0m in 0.42s]
+[0m22:54:57.285537 [debug] [Thread-2 (]: Finished running node model.eeg_pipeline.stg_eeg_features
+[0m22:54:57.296428 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '757d22b5-e26e-416a-8bfe-63d14445fbd5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B33D4050>]}
+[0m22:54:57.298484 [info ] [Thread-1 (]: 1 of 2 OK created sql view model main.stg_eeg_alerts ........................... [[32mOK[0m in 0.44s]
+[0m22:54:57.300482 [debug] [Thread-1 (]: Finished running node model.eeg_pipeline.stg_eeg_alerts
+[0m22:54:57.303782 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:54:57.304875 [debug] [MainThread]: On master: BEGIN
+[0m22:54:57.305966 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m22:54:57.477255 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m22:54:57.478270 [debug] [MainThread]: On master: COMMIT
+[0m22:54:57.479270 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:54:57.479270 [debug] [MainThread]: On master: COMMIT
+[0m22:54:57.481266 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m22:54:57.481266 [debug] [MainThread]: On master: Close
+[0m22:54:57.486787 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m22:54:57.486787 [debug] [MainThread]: Connection 'create_eeg_main' was properly closed.
+[0m22:54:57.487788 [debug] [MainThread]: Connection 'list_eeg_main' was properly closed.
+[0m22:54:57.488787 [debug] [MainThread]: Connection 'model.eeg_pipeline.stg_eeg_alerts' was properly closed.
+[0m22:54:57.489788 [debug] [MainThread]: Connection 'model.eeg_pipeline.stg_eeg_features' was properly closed.
+[0m22:54:57.490789 [info ] [MainThread]: 
+[0m22:54:57.492385 [info ] [MainThread]: Finished running 2 view models in 0 hours 0 minutes and 1.44 seconds (1.44s).
+[0m22:54:57.494398 [debug] [MainThread]: Command end result
+[0m22:54:57.506396 [info ] [MainThread]: 
+[0m22:54:57.507436 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m22:54:57.508443 [info ] [MainThread]: 
+[0m22:54:57.509786 [info ] [MainThread]: Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2
+[0m22:54:57.511807 [debug] [MainThread]: Command `dbt run` succeeded at 22:54:57.511807 after 5.95 seconds
+[0m22:54:57.513161 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B1EDD250>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B14AEE10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000252B181B6D0>]}
+[0m22:54:57.514165 [debug] [MainThread]: Flushing usage events
+[0m23:31:35.329476 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B89F5C1F90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B89DF18990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B89DF18AD0>]}
+
+
+============================== 23:31:35.341064 | 52e86eaf-ffdc-4798-9659-e5326bf4c99e ==============================
+[0m23:31:35.341064 [info ] [MainThread]: Running with dbt=1.7.9
+[0m23:31:35.343512 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\neyma\\eeg-pipeline\\dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'invocation_command': 'dbt test', 'use_colors': 'True', 'indirect_selection': 'eager', 'use_experimental_parser': 'False', 'log_path': 'C:\\Users\\neyma\\eeg-pipeline\\dbt\\logs'}
+[0m23:31:36.093480 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '52e86eaf-ffdc-4798-9659-e5326bf4c99e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B89F64C0D0>]}
+[0m23:31:36.265357 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '52e86eaf-ffdc-4798-9659-e5326bf4c99e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B89F6FC290>]}
+[0m23:31:36.268360 [info ] [MainThread]: Registered adapter: duckdb=1.7.0
+[0m23:31:36.290026 [debug] [MainThread]: checksum: 6ff0d83c3b46f350064523b4e08d9241403ad71d606ba49c4e670afba3668b39, vars: {}, profile: , target: , version: 1.7.9
+[0m23:31:36.476327 [info ] [MainThread]: Unable to do partial parsing because a project config has changed
+[0m23:31:36.478888 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '52e86eaf-ffdc-4798-9659-e5326bf4c99e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B89F63D850>]}
+[0m23:31:38.139500 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '52e86eaf-ffdc-4798-9659-e5326bf4c99e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B89F818790>]}
+[0m23:31:38.160042 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '52e86eaf-ffdc-4798-9659-e5326bf4c99e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B89FAE91D0>]}
+[0m23:31:38.162042 [info ] [MainThread]: Found 5 models, 0 sources, 0 exposures, 0 metrics, 391 macros, 0 groups, 0 semantic models
+[0m23:31:38.163044 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '52e86eaf-ffdc-4798-9659-e5326bf4c99e', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B89F6390D0>]}
+[0m23:31:38.165049 [info ] [MainThread]: 
+[0m23:31:38.166558 [warn ] [MainThread]: Nothing to do. Try checking your model configs and model specification args
+[0m23:31:38.168569 [debug] [MainThread]: Command end result
+[0m23:31:38.181738 [debug] [MainThread]: Command `dbt test` succeeded at 23:31:38.181738 after 3.10 seconds
+[0m23:31:38.182901 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B89F5DEE90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B898077690>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B898077650>]}
+[0m23:31:38.183942 [debug] [MainThread]: Flushing usage events
+[0m23:32:16.493208 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025878BC57D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025878879ED0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000258781995D0>]}
+
+
+============================== 23:32:16.502581 | 93eae0e7-cd05-4d9e-bc4b-afa1df3f157c ==============================
+[0m23:32:16.502581 [info ] [MainThread]: Running with dbt=1.7.9
+[0m23:32:16.504223 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'profiles_dir': 'C:\\Users\\neyma\\eeg-pipeline\\dbt', 'indirect_selection': 'eager', 'invocation_command': 'dbt run --select staging', 'use_colors': 'True', 'use_experimental_parser': 'False', 'log_path': 'C:\\Users\\neyma\\eeg-pipeline\\dbt\\logs'}
+[0m23:32:17.054042 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '93eae0e7-cd05-4d9e-bc4b-afa1df3f157c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025878C3E550>]}
+[0m23:32:17.200081 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '93eae0e7-cd05-4d9e-bc4b-afa1df3f157c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025878516890>]}
+[0m23:32:17.203082 [info ] [MainThread]: Registered adapter: duckdb=1.7.0
+[0m23:32:17.220016 [debug] [MainThread]: checksum: 6ff0d83c3b46f350064523b4e08d9241403ad71d606ba49c4e670afba3668b39, vars: {}, profile: , target: , version: 1.7.9
+[0m23:32:17.580961 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m23:32:17.583100 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m23:32:17.596357 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '93eae0e7-cd05-4d9e-bc4b-afa1df3f157c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025878B8D150>]}
+[0m23:32:17.628634 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '93eae0e7-cd05-4d9e-bc4b-afa1df3f157c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025878EB8CD0>]}
+[0m23:32:17.631575 [info ] [MainThread]: Found 5 models, 0 sources, 0 exposures, 0 metrics, 391 macros, 0 groups, 0 semantic models
+[0m23:32:17.635894 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '93eae0e7-cd05-4d9e-bc4b-afa1df3f157c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025878E37F90>]}
+[0m23:32:17.641383 [info ] [MainThread]: 
+[0m23:32:17.644906 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m23:32:17.659097 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_eeg'
+[0m23:32:17.683971 [debug] [ThreadPool]: Using duckdb connection "list_eeg"
+[0m23:32:17.686139 [debug] [ThreadPool]: On list_eeg: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "connection_name": "list_eeg"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where catalog_name = '"eeg"'
+    
+  
+  
+[0m23:32:17.687132 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m23:32:18.969990 [debug] [ThreadPool]: SQL status: OK in 1.0 seconds
+[0m23:32:18.973025 [debug] [ThreadPool]: On list_eeg: Close
+[0m23:32:18.978454 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_eeg, now create_eeg_main)
+[0m23:32:18.980476 [debug] [ThreadPool]: Creating schema "database: "eeg"
+schema: "main"
+"
+[0m23:32:18.987474 [debug] [ThreadPool]: Using duckdb connection "create_eeg_main"
+[0m23:32:18.988474 [debug] [ThreadPool]: On create_eeg_main: BEGIN
+[0m23:32:18.989475 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m23:32:19.167925 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m23:32:19.168926 [debug] [ThreadPool]: Using duckdb connection "create_eeg_main"
+[0m23:32:19.169928 [debug] [ThreadPool]: On create_eeg_main: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "connection_name": "create_eeg_main"} */
+create schema if not exists "eeg"."main"
+[0m23:32:19.172920 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m23:32:19.175165 [debug] [ThreadPool]: On create_eeg_main: COMMIT
+[0m23:32:19.176165 [debug] [ThreadPool]: Using duckdb connection "create_eeg_main"
+[0m23:32:19.177165 [debug] [ThreadPool]: On create_eeg_main: COMMIT
+[0m23:32:19.178165 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m23:32:19.179171 [debug] [ThreadPool]: On create_eeg_main: Close
+[0m23:32:19.186372 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_eeg_main'
+[0m23:32:19.194913 [debug] [ThreadPool]: Using duckdb connection "list_eeg_main"
+[0m23:32:19.195987 [debug] [ThreadPool]: On list_eeg_main: BEGIN
+[0m23:32:19.197257 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m23:32:19.360329 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m23:32:19.361330 [debug] [ThreadPool]: Using duckdb connection "list_eeg_main"
+[0m23:32:19.362329 [debug] [ThreadPool]: On list_eeg_main: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "connection_name": "list_eeg_main"} */
+select
+      'eeg' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where table_schema = 'main'
+    and table_catalog = 'eeg'
+  
+[0m23:32:19.374373 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m23:32:19.376644 [debug] [ThreadPool]: On list_eeg_main: ROLLBACK
+[0m23:32:19.378641 [debug] [ThreadPool]: Failed to rollback 'list_eeg_main'
+[0m23:32:19.379643 [debug] [ThreadPool]: On list_eeg_main: Close
+[0m23:32:19.386947 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '93eae0e7-cd05-4d9e-bc4b-afa1df3f157c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025878CFE750>]}
+[0m23:32:19.389327 [debug] [MainThread]: Using duckdb connection "master"
+[0m23:32:19.389327 [debug] [MainThread]: On master: BEGIN
+[0m23:32:19.390379 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m23:32:19.542519 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m23:32:19.543924 [debug] [MainThread]: On master: COMMIT
+[0m23:32:19.544940 [debug] [MainThread]: Using duckdb connection "master"
+[0m23:32:19.545940 [debug] [MainThread]: On master: COMMIT
+[0m23:32:19.547310 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m23:32:19.548310 [debug] [MainThread]: On master: Close
+[0m23:32:19.552578 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m23:32:19.553677 [info ] [MainThread]: 
+[0m23:32:19.561898 [debug] [Thread-1 (]: Began running node model.eeg_pipeline.stg_eeg_alerts
+[0m23:32:19.562919 [debug] [Thread-2 (]: Began running node model.eeg_pipeline.stg_eeg_features
+[0m23:32:19.564028 [info ] [Thread-1 (]: 1 of 2 START sql view model main.stg_eeg_alerts ................................ [RUN]
+[0m23:32:19.565048 [info ] [Thread-2 (]: 2 of 2 START sql view model main.stg_eeg_features .............................. [RUN]
+[0m23:32:19.567444 [debug] [Thread-1 (]: Acquiring new duckdb connection 'model.eeg_pipeline.stg_eeg_alerts'
+[0m23:32:19.568648 [debug] [Thread-2 (]: Acquiring new duckdb connection 'model.eeg_pipeline.stg_eeg_features'
+[0m23:32:19.569662 [debug] [Thread-1 (]: Began compiling node model.eeg_pipeline.stg_eeg_alerts
+[0m23:32:19.570663 [debug] [Thread-2 (]: Began compiling node model.eeg_pipeline.stg_eeg_features
+[0m23:32:19.580901 [debug] [Thread-1 (]: Writing injected SQL for node "model.eeg_pipeline.stg_eeg_alerts"
+[0m23:32:19.585075 [debug] [Thread-2 (]: Writing injected SQL for node "model.eeg_pipeline.stg_eeg_features"
+[0m23:32:19.590148 [debug] [Thread-1 (]: Timing info for model.eeg_pipeline.stg_eeg_alerts (compile): 23:32:19.571667 => 23:32:19.589154
+[0m23:32:19.591148 [debug] [Thread-2 (]: Timing info for model.eeg_pipeline.stg_eeg_features (compile): 23:32:19.581916 => 23:32:19.591148
+[0m23:32:19.592147 [debug] [Thread-1 (]: Began executing node model.eeg_pipeline.stg_eeg_alerts
+[0m23:32:19.593144 [debug] [Thread-2 (]: Began executing node model.eeg_pipeline.stg_eeg_features
+[0m23:32:19.658730 [debug] [Thread-2 (]: Writing runtime sql for node "model.eeg_pipeline.stg_eeg_features"
+[0m23:32:19.661732 [debug] [Thread-1 (]: Writing runtime sql for node "model.eeg_pipeline.stg_eeg_alerts"
+[0m23:32:19.663733 [debug] [Thread-2 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_features"
+[0m23:32:19.665075 [debug] [Thread-1 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_alerts"
+[0m23:32:19.666074 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: BEGIN
+[0m23:32:19.668077 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: BEGIN
+[0m23:32:19.669078 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m23:32:19.671118 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m23:32:19.854064 [debug] [Thread-2 (]: SQL status: OK in 0.0 seconds
+[0m23:32:19.855064 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m23:32:19.856064 [debug] [Thread-2 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_features"
+[0m23:32:19.856573 [debug] [Thread-1 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_alerts"
+[0m23:32:19.857583 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.stg_eeg_features"} */
+
+  
+  create view "eeg"."main"."stg_eeg_features__dbt_tmp" as (
+    SELECT *
+FROM delta_scan('../data/delta/eeg_features/')
+  );
+
+[0m23:32:19.858583 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.stg_eeg_alerts"} */
+
+  
+  create view "eeg"."main"."stg_eeg_alerts__dbt_tmp" as (
+    SELECT *
+FROM delta_scan('../data/delta/eeg_alerts/')
+  );
+
+[0m23:32:19.880641 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m23:32:19.881638 [debug] [Thread-2 (]: SQL status: OK in 0.0 seconds
+[0m23:32:19.890171 [debug] [Thread-1 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_alerts"
+[0m23:32:19.895363 [debug] [Thread-2 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_features"
+[0m23:32:19.896363 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.stg_eeg_alerts"} */
+alter view "eeg"."main"."stg_eeg_alerts" rename to "stg_eeg_alerts__dbt_backup"
+[0m23:32:19.897365 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.stg_eeg_features"} */
+alter view "eeg"."main"."stg_eeg_features" rename to "stg_eeg_features__dbt_backup"
+[0m23:32:19.900547 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m23:32:19.901601 [debug] [Thread-2 (]: SQL status: OK in 0.0 seconds
+[0m23:32:19.906911 [debug] [Thread-1 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_alerts"
+[0m23:32:19.910909 [debug] [Thread-2 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_features"
+[0m23:32:19.911907 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.stg_eeg_alerts"} */
+alter view "eeg"."main"."stg_eeg_alerts__dbt_tmp" rename to "stg_eeg_alerts"
+[0m23:32:19.912909 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.stg_eeg_features"} */
+alter view "eeg"."main"."stg_eeg_features__dbt_tmp" rename to "stg_eeg_features"
+[0m23:32:19.914921 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m23:32:19.928422 [debug] [Thread-2 (]: SQL status: OK in 0.0 seconds
+[0m23:32:19.938238 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: COMMIT
+[0m23:32:19.941240 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: COMMIT
+[0m23:32:19.942241 [debug] [Thread-1 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_alerts"
+[0m23:32:19.943239 [debug] [Thread-2 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_features"
+[0m23:32:19.944741 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: COMMIT
+[0m23:32:19.946452 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: COMMIT
+[0m23:32:19.952262 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m23:32:19.963490 [debug] [Thread-1 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_alerts"
+[0m23:32:19.964489 [debug] [Thread-2 (]: SQL status: OK in 0.0 seconds
+[0m23:32:19.965496 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.stg_eeg_alerts"} */
+drop view if exists "eeg"."main"."stg_eeg_alerts__dbt_backup" cascade
+[0m23:32:19.969493 [debug] [Thread-2 (]: Using duckdb connection "model.eeg_pipeline.stg_eeg_features"
+[0m23:32:19.970496 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.stg_eeg_features"} */
+drop view if exists "eeg"."main"."stg_eeg_features__dbt_backup" cascade
+[0m23:32:19.974032 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m23:32:19.978488 [debug] [Thread-1 (]: Timing info for model.eeg_pipeline.stg_eeg_alerts (execute): 23:32:19.594445 => 23:32:19.977421
+[0m23:32:19.979096 [debug] [Thread-2 (]: SQL status: OK in 0.0 seconds
+[0m23:32:19.980192 [debug] [Thread-1 (]: On model.eeg_pipeline.stg_eeg_alerts: Close
+[0m23:32:19.982395 [debug] [Thread-2 (]: Timing info for model.eeg_pipeline.stg_eeg_features (execute): 23:32:19.649228 => 23:32:19.982395
+[0m23:32:19.984030 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '93eae0e7-cd05-4d9e-bc4b-afa1df3f157c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002587A092010>]}
+[0m23:32:19.985178 [debug] [Thread-2 (]: On model.eeg_pipeline.stg_eeg_features: Close
+[0m23:32:19.986269 [info ] [Thread-1 (]: 1 of 2 OK created sql view model main.stg_eeg_alerts ........................... [[32mOK[0m in 0.42s]
+[0m23:32:19.988467 [debug] [Thread-1 (]: Finished running node model.eeg_pipeline.stg_eeg_alerts
+[0m23:32:19.999668 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '93eae0e7-cd05-4d9e-bc4b-afa1df3f157c', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002587A092010>]}
+[0m23:32:20.000680 [info ] [Thread-2 (]: 2 of 2 OK created sql view model main.stg_eeg_features ......................... [[32mOK[0m in 0.43s]
+[0m23:32:20.001684 [debug] [Thread-2 (]: Finished running node model.eeg_pipeline.stg_eeg_features
+[0m23:32:20.005768 [debug] [MainThread]: Using duckdb connection "master"
+[0m23:32:20.006942 [debug] [MainThread]: On master: BEGIN
+[0m23:32:20.008011 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m23:32:20.198592 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m23:32:20.199589 [debug] [MainThread]: On master: COMMIT
+[0m23:32:20.200588 [debug] [MainThread]: Using duckdb connection "master"
+[0m23:32:20.200588 [debug] [MainThread]: On master: COMMIT
+[0m23:32:20.202591 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m23:32:20.202591 [debug] [MainThread]: On master: Close
+[0m23:32:20.207983 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m23:32:20.208983 [debug] [MainThread]: Connection 'create_eeg_main' was properly closed.
+[0m23:32:20.209982 [debug] [MainThread]: Connection 'list_eeg_main' was properly closed.
+[0m23:32:20.210983 [debug] [MainThread]: Connection 'model.eeg_pipeline.stg_eeg_alerts' was properly closed.
+[0m23:32:20.210983 [debug] [MainThread]: Connection 'model.eeg_pipeline.stg_eeg_features' was properly closed.
+[0m23:32:20.211984 [info ] [MainThread]: 
+[0m23:32:20.212983 [info ] [MainThread]: Finished running 2 view models in 0 hours 0 minutes and 2.57 seconds (2.57s).
+[0m23:32:20.215593 [debug] [MainThread]: Command end result
+[0m23:32:20.227684 [info ] [MainThread]: 
+[0m23:32:20.228688 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m23:32:20.230686 [info ] [MainThread]: 
+[0m23:32:20.231698 [info ] [MainThread]: Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2
+[0m23:32:20.233695 [debug] [MainThread]: Command `dbt run` succeeded at 23:32:20.232697 after 3.99 seconds
+[0m23:32:20.234699 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002587851C9D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000258716A7610>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000258716A7690>]}
+[0m23:32:20.234699 [debug] [MainThread]: Flushing usage events
+[0m23:32:42.716434 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015B964C4B50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015B94300A90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015B964C5610>]}
+
+
+============================== 23:32:42.722621 | 4911bd00-cc3b-4611-bae4-0843ec30046a ==============================
+[0m23:32:42.722621 [info ] [MainThread]: Running with dbt=1.7.9
+[0m23:32:42.724622 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\neyma\\eeg-pipeline\\dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'use_colors': 'True', 'indirect_selection': 'eager', 'invocation_command': 'dbt run --select marts', 'use_experimental_parser': 'False', 'log_path': 'C:\\Users\\neyma\\eeg-pipeline\\dbt\\logs'}
+[0m23:32:43.189263 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '4911bd00-cc3b-4611-bae4-0843ec30046a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015B93403610>]}
+[0m23:32:43.328886 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '4911bd00-cc3b-4611-bae4-0843ec30046a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015B965ED1D0>]}
+[0m23:32:43.330947 [info ] [MainThread]: Registered adapter: duckdb=1.7.0
+[0m23:32:43.350004 [debug] [MainThread]: checksum: 6ff0d83c3b46f350064523b4e08d9241403ad71d606ba49c4e670afba3668b39, vars: {}, profile: , target: , version: 1.7.9
+[0m23:32:43.618169 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m23:32:43.619171 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m23:32:43.630759 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '4911bd00-cc3b-4611-bae4-0843ec30046a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015B96524810>]}
+[0m23:32:43.658191 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '4911bd00-cc3b-4611-bae4-0843ec30046a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015B967B9610>]}
+[0m23:32:43.659240 [info ] [MainThread]: Found 5 models, 0 sources, 0 exposures, 0 metrics, 391 macros, 0 groups, 0 semantic models
+[0m23:32:43.660554 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '4911bd00-cc3b-4611-bae4-0843ec30046a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015B964DD690>]}
+[0m23:32:43.664555 [info ] [MainThread]: 
+[0m23:32:43.666565 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m23:32:43.668564 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_eeg'
+[0m23:32:43.703412 [debug] [ThreadPool]: Using duckdb connection "list_eeg"
+[0m23:32:43.705413 [debug] [ThreadPool]: On list_eeg: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "connection_name": "list_eeg"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where catalog_name = '"eeg"'
+    
+  
+  
+[0m23:32:43.706409 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m23:32:43.907970 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m23:32:43.910290 [debug] [ThreadPool]: On list_eeg: Close
+[0m23:32:43.915930 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_eeg, now create_eeg_main)
+[0m23:32:43.917936 [debug] [ThreadPool]: Creating schema "database: "eeg"
+schema: "main"
+"
+[0m23:32:43.924484 [debug] [ThreadPool]: Using duckdb connection "create_eeg_main"
+[0m23:32:43.925483 [debug] [ThreadPool]: On create_eeg_main: BEGIN
+[0m23:32:43.926491 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m23:32:44.102764 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m23:32:44.103772 [debug] [ThreadPool]: Using duckdb connection "create_eeg_main"
+[0m23:32:44.104827 [debug] [ThreadPool]: On create_eeg_main: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "connection_name": "create_eeg_main"} */
+create schema if not exists "eeg"."main"
+[0m23:32:44.105841 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m23:32:44.107845 [debug] [ThreadPool]: On create_eeg_main: COMMIT
+[0m23:32:44.108849 [debug] [ThreadPool]: Using duckdb connection "create_eeg_main"
+[0m23:32:44.109848 [debug] [ThreadPool]: On create_eeg_main: COMMIT
+[0m23:32:44.110849 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m23:32:44.111847 [debug] [ThreadPool]: On create_eeg_main: Close
+[0m23:32:44.118572 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_eeg_main'
+[0m23:32:44.126690 [debug] [ThreadPool]: Using duckdb connection "list_eeg_main"
+[0m23:32:44.127691 [debug] [ThreadPool]: On list_eeg_main: BEGIN
+[0m23:32:44.127691 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m23:32:44.279092 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m23:32:44.280599 [debug] [ThreadPool]: Using duckdb connection "list_eeg_main"
+[0m23:32:44.281612 [debug] [ThreadPool]: On list_eeg_main: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "connection_name": "list_eeg_main"} */
+select
+      'eeg' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where table_schema = 'main'
+    and table_catalog = 'eeg'
+  
+[0m23:32:44.286794 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m23:32:44.289404 [debug] [ThreadPool]: On list_eeg_main: ROLLBACK
+[0m23:32:44.290441 [debug] [ThreadPool]: Failed to rollback 'list_eeg_main'
+[0m23:32:44.291949 [debug] [ThreadPool]: On list_eeg_main: Close
+[0m23:32:44.297996 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '4911bd00-cc3b-4611-bae4-0843ec30046a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015B966DD790>]}
+[0m23:32:44.299117 [debug] [MainThread]: Using duckdb connection "master"
+[0m23:32:44.300117 [debug] [MainThread]: On master: BEGIN
+[0m23:32:44.300117 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m23:32:44.458529 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m23:32:44.459526 [debug] [MainThread]: On master: COMMIT
+[0m23:32:44.460552 [debug] [MainThread]: Using duckdb connection "master"
+[0m23:32:44.461551 [debug] [MainThread]: On master: COMMIT
+[0m23:32:44.462553 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m23:32:44.463633 [debug] [MainThread]: On master: Close
+[0m23:32:44.469044 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m23:32:44.470045 [info ] [MainThread]: 
+[0m23:32:44.475660 [debug] [Thread-1 (]: Began running node model.eeg_pipeline.patient_summary
+[0m23:32:44.476868 [info ] [Thread-1 (]: 1 of 1 START sql table model main.patient_summary .............................. [RUN]
+[0m23:32:44.479764 [debug] [Thread-1 (]: Acquiring new duckdb connection 'model.eeg_pipeline.patient_summary'
+[0m23:32:44.479764 [debug] [Thread-1 (]: Began compiling node model.eeg_pipeline.patient_summary
+[0m23:32:44.501789 [debug] [Thread-1 (]: Writing injected SQL for node "model.eeg_pipeline.patient_summary"
+[0m23:32:44.504790 [debug] [Thread-1 (]: Timing info for model.eeg_pipeline.patient_summary (compile): 23:32:44.480778 => 23:32:44.503787
+[0m23:32:44.506855 [debug] [Thread-1 (]: Began executing node model.eeg_pipeline.patient_summary
+[0m23:32:44.566713 [debug] [Thread-1 (]: Writing runtime sql for node "model.eeg_pipeline.patient_summary"
+[0m23:32:44.571040 [debug] [Thread-1 (]: Using duckdb connection "model.eeg_pipeline.patient_summary"
+[0m23:32:44.572139 [debug] [Thread-1 (]: On model.eeg_pipeline.patient_summary: BEGIN
+[0m23:32:44.574003 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m23:32:44.760399 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m23:32:44.761601 [debug] [Thread-1 (]: Using duckdb connection "model.eeg_pipeline.patient_summary"
+[0m23:32:44.762613 [debug] [Thread-1 (]: On model.eeg_pipeline.patient_summary: /* {"app": "dbt", "dbt_version": "1.7.9", "profile_name": "eeg_pipeline", "target_name": "dev", "node_id": "model.eeg_pipeline.patient_summary"} */
+
+  
+    
+    
+
+    create  table
+      "eeg"."main"."patient_summary__dbt_tmp"
+  
+    as (
+      -- patient_summary — one row per patient:
+
+-- total windows processed
+-- total alerts fired
+-- alert rate (alerts / windows as a percentage)
+SELECT
+features.patient_id,
+COUNT(DISTINCT(features.window_start)) AS TOT_WINDOWS_PROCESSED,
+COUNT(alerts.alert_reason) AS TOT_ALERTS,
+CONCAT(ROUND(COUNT(alerts.alert_reason)*100.0/COUNT(DISTINCT(features.window_start)),2), '%') AS ALERT_RATE
+FROM "eeg"."main"."stg_eeg_features" AS features
+LEFT JOIN "eeg"."main"."stg_eeg_alerts" AS alerts
+GROUP BY features.patient_id
+    );
+  
+  
+[0m23:32:44.769730 [debug] [Thread-1 (]: Timing info for model.eeg_pipeline.patient_summary (execute): 23:32:44.508208 => 23:32:44.768731
+[0m23:32:44.770734 [debug] [Thread-1 (]: On model.eeg_pipeline.patient_summary: ROLLBACK
+[0m23:32:44.955793 [debug] [Thread-1 (]: Failed to rollback 'model.eeg_pipeline.patient_summary'
+[0m23:32:44.956799 [debug] [Thread-1 (]: On model.eeg_pipeline.patient_summary: Close
+[0m23:32:44.964037 [debug] [Thread-1 (]: Runtime Error in model patient_summary (models\marts\patient_summary.sql)
+  Parser Error: syntax error at or near "GROUP"
+  
+  LINE 22: LEFT JOIN "eeg"."main"."stg_eeg_alerts" AS alerts
+                                                           ^
+[0m23:32:44.965042 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4911bd00-cc3b-4611-bae4-0843ec30046a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015B9653BB50>]}
+[0m23:32:44.967034 [error] [Thread-1 (]: 1 of 1 ERROR creating sql table model main.patient_summary ..................... [[31mERROR[0m in 0.49s]
+[0m23:32:44.969129 [debug] [Thread-1 (]: Finished running node model.eeg_pipeline.patient_summary
+[0m23:32:44.972187 [debug] [MainThread]: Using duckdb connection "master"
+[0m23:32:44.973196 [debug] [MainThread]: On master: BEGIN
+[0m23:32:44.973196 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m23:32:45.157686 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m23:32:45.158684 [debug] [MainThread]: On master: COMMIT
+[0m23:32:45.159684 [debug] [MainThread]: Using duckdb connection "master"
+[0m23:32:45.160690 [debug] [MainThread]: On master: COMMIT
+[0m23:32:45.161690 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m23:32:45.162692 [debug] [MainThread]: On master: Close
+[0m23:32:45.167692 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m23:32:45.168724 [debug] [MainThread]: Connection 'create_eeg_main' was properly closed.
+[0m23:32:45.170993 [debug] [MainThread]: Connection 'list_eeg_main' was properly closed.
+[0m23:32:45.172006 [debug] [MainThread]: Connection 'model.eeg_pipeline.patient_summary' was properly closed.
+[0m23:32:45.173005 [info ] [MainThread]: 
+[0m23:32:45.174113 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 1.51 seconds (1.51s).
+[0m23:32:45.175114 [debug] [MainThread]: Command end result
+[0m23:32:45.187969 [info ] [MainThread]: 
+[0m23:32:45.188972 [info ] [MainThread]: [31mCompleted with 1 error and 0 warnings:[0m
+[0m23:32:45.189968 [info ] [MainThread]: 
+[0m23:32:45.190968 [error] [MainThread]:   Runtime Error in model patient_summary (models\marts\patient_summary.sql)
+  Parser Error: syntax error at or near "GROUP"
+  
+  LINE 22: LEFT JOIN "eeg"."main"."stg_eeg_alerts" AS alerts
+                                                           ^
+[0m23:32:45.192478 [info ] [MainThread]: 
+[0m23:32:45.193487 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=1 SKIP=0 TOTAL=1
+[0m23:32:45.195490 [debug] [MainThread]: Command `dbt run` failed at 23:32:45.195490 after 2.65 seconds
+[0m23:32:45.196487 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015B94E7E890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015B94E7B490>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015B94100F90>]}
+[0m23:32:45.197506 [debug] [MainThread]: Flushing usage events

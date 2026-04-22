@@ -1,10 +1,9 @@
-eeg_pipeline:
-  target: dev
+eeg_pipeline: # match the name in dbt_project.yml
+  target: dev # which output to use, matches the output name in the outputs section below
   outputs:
     dev:
-      type: spark
-      method: thrift
-      host: localhost
-      port: 10000
-      schema: default
-      threads: 1
+      type: duckdb # tells dbt to use DuckDB as the query engine
+      path: ../eeg.duckdb # database file is here
+      extensions:
+        - delta # delta extension to read delta tables using delta_scan() 
+      threads: 4 # 4 dbt threads for parallelism

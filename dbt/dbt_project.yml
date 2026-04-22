@@ -11,6 +11,7 @@ clean-targets: ["target", "dbt_packages"]
 models:
   eeg_pipeline:
     staging:
-      +materialized: view
+      +materialized: view  
+      # staging models are views for fast iteration and transformation logic testing
     marts:
-      +materialized: table
+      +materialized: table # marts are tables for serving layer, we want them to be fast for querying, so we materialize them as tables
