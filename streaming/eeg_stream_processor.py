@@ -89,12 +89,12 @@ eeg_analytic_df = (
         window("event_time", "5 seconds"), "patient_id", "channel"
     )  # window is 5s, which means we are grouping data in 5s intervals
     .agg(
-        mean("voltage").alias("mean_uv"),
-        stddev("voltage").alias("stddev_uv"),
-        min("voltage").alias("min_uv"),
-        max("voltage").alias("max_uv"),
+        mean("voltage").alias("mean_v"),
+        stddev("voltage").alias("stddev_v"),
+        min("voltage").alias("min_v"),
+        max("voltage").alias("max_v"),
         sum(
-            when(abs(col("voltage")) > 0.0001, 1).otherwise(0)
+            when(abs(col("voltage")) > 0.00005, 1).otherwise(0)
         ).alias(  # we take the absolute value and check if its > 100microv, if yes then its a spike.
             "spike_count"
         ),
@@ -106,7 +106,7 @@ eeg_analytic_df = (
 eeg_analytic_df = eeg_analytic_df.withColumn(
     "alert_reason",
     when(col("spike_count") > 10, "spike_threshold")
-    .when(col("stddev_uv") > 0.0001, "high_variance")
+    .when(col("stddev_v") > 0.00005, "high_variance")
     .otherwise(None),
 )
 
@@ -125,7 +125,8 @@ def process_batch(batch_df, batch_id):
 
     # writes all rows to eeg_features
     (
-        batch_df.write.format("delta")
+        batch_df.drop("alert_reason")
+        .write.format("delta")
         .mode("append")
         .partitionBy(
             "patient_id", "event_date"

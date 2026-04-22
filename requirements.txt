@@ -21,8 +21,8 @@ mne==1.4.0
 # for parquet file handling
 pyarrow==14.0.0
 
-# for dbt with Spark
-dbt-spark==1.7.0
+# for dbt with DuckDB
+dbt-duckdb==1.7.0
 
 # python-dotenv for managing environment variables
 python-dotenv==0.19.2
