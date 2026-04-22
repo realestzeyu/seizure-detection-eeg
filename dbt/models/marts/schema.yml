@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: patient_summary
+    columns:
+      - name: PATIENT_ID
+        tests:
+          - not_null
+          - unique
+      - name: TOT_WINDOWS_PROCESSED
+        tests:
+          - not_null
+      - name: TOT_ALERTS_FIRED
+        tests:
+          - not_null
+      - name: ALERT_RATE
+        tests:
+          - not_null
+
+  - name: alerts_daily
+    columns:
+      - name: PATIENT_ID
+        tests:
+          - not_null
+      - name: CHANNEL
+        tests:
+          - not_null
+      - name: ALERT_DATE
+        tests:
+          - not_null
+
+  - name: seizure_detection_rate
+    columns:
+      - name: DETECTED
+        tests:
+          - not_null
+      - name: TOT_SEIZURES
+        tests:
+          - not_null
+      - name: DETECTION_RATE
+        tests:
+          - not_null
+      - name: FP_COUNT
+        tests:
+          - not_null

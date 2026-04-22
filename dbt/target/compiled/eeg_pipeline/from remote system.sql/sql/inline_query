@@ -1,0 +1,6 @@
+
+  SELECT DISTINCT f.window_start
+  FROM "eeg"."main"."stg_eeg_features" f
+  LEFT JOIN "eeg"."main"."stg_eeg_alerts" a ON f.window_start = a.window_start
+  WHERE a.window_start IS NULL
+  

@@ -1,6 +1,6 @@
 
   
   create view "eeg"."main"."stg_eeg_alerts__dbt_tmp" as (
-    SELECT *
+    SELECT *
 FROM delta_scan('../data/delta/eeg_alerts/')
   );

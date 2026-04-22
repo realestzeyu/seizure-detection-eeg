@@ -1,2 +1,2 @@
-SELECT *
+SELECT *
 FROM delta_scan('../data/delta/eeg_alerts/')

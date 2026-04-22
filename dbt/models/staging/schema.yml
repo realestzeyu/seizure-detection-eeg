@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: stg_eeg_alerts
+    columns:
+      - name: alert_reason
+        tests:
+          - accepted_values:
+              values: ["spike_threshold", "high_variance"]

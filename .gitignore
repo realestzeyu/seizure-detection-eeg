@@ -8,4 +8,6 @@ data/raw/
 data/delta/
 data/processed/
 data/checkpoints/
+*.duckdb
+logs/
 CLAUDE.md   
