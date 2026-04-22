@@ -9,7 +9,7 @@ WITH alert_counts AS (
     event_date AS ALERT_DATE,
     COUNT(CASE WHEN alert_reason = 'spike_threshold' THEN 1 ELSE NULL END) AS SPIKE_THRESHOLD_CNT,
     COUNT(CASE WHEN alert_reason = 'high_variance' THEN 1 ELSE NULL END) AS HIGH_VAR_CNT
-    FROM {{ ref('stg_eeg_alerts') }}
+    FROM "eeg"."main"."stg_eeg_alerts"
     GROUP BY patient_id, channel, event_date
 )
 SELECT 
