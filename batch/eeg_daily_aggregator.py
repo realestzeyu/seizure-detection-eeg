@@ -105,6 +105,10 @@ annotations = seizure_annotations_spark_df.alias(
     "annotations"
 )  # alias for annotations table
 
+annotations.write.format("delta").mode("overwrite").save(
+    "./data/delta/eeg_annotations"
+)  # write annotations to delta lake for future use
+
 # if alert window overlaps with seizure start and end time, then its detected
 joined_df = alerts.join(
     annotations,
