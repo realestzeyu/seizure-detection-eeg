@@ -1,2 +1,2 @@
 SELECT *
-FROM delta_scan('../data/delta/eeg_annotations/')
+FROM delta_scan('/home/zeyu/seizure-detection-eeg/data/delta/eeg_annotations/')

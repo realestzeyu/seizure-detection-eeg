@@ -9,5 +9,12 @@ data/delta/
 data/processed/
 data/checkpoints/
 *.duckdb
+*.db
 logs/
-CLAUDE.md   
+CLAUDE.md
+# dbt build artifacts
+dbt/target/
+dbt/.user.yml
+# airflow
+airflow/airflow.cfg
+airflow/airflow.db

@@ -390,55 +390,55 @@ def validate_eeg_features(df):
     # ), "patient_id does not match format of chb\d{2}"
 
 
-# lets run it now
-spark = (
-    SparkSession.builder.appName("eeg-validation")
-    .config(
-        "spark.jars.packages",
-        "io.delta:delta-spark_2.12:3.2.0,org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0",
+def main():
+    # lets run it now
+    spark = (
+        SparkSession.builder.appName("eeg-validation")
+        .config(
+            "spark.jars.packages",
+            "io.delta:delta-spark_2.12:3.2.0,org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0",
+        )
+        .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
+        .config(
+            "spark.sql.catalog.spark_catalog",
+            "org.apache.spark.sql.delta.catalog.DeltaCatalog",
+        )
+        .getOrCreate()
     )
-    .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
-    .config(
-        "spark.sql.catalog.spark_catalog",
-        "org.apache.spark.sql.delta.catalog.DeltaCatalog",
-    )
-    .getOrCreate()
-)
+    # test — run your validation, confirm it catches null_check and v_range_check
+    df = spark.read.format("delta").load("./data/delta/eeg_features")
+    validate_eeg_features(df)
+    """
+    Uncomment below to insert a BAD ROW to test the validation pipeline works.
+    """
+    # bad_row = spark.createDataFrame(
+    #     [
+    #         Row(
+    #             patient_id="chb1234",
+    #             channel="FP1-F7",
+    #             window_start=datetime.fromtimestamp(
+    #                 1776664741
+    #             ),  # timestamp of when i edit this lol
+    #             window_end=datetime.fromtimestamp(1776664741)
+    #             + timedelta(seconds=5),  # 5 seconds later
+    #             mean_v=999.0,
+    #             stddev_v=0.0,
+    #             min_v=999.0,
+    #             max_v=999.0,
+    #             spike_count=0,
+    #             # alert_reason=None,
+    #             event_date=date(2023, 1, 1),
+    #         )
+    #     ],
+    #     schema=expected_schema,
+    # )
+    # bad_row.write.format("delta").mode("append").save("./data/delta/eeg_features")
+    # delete
+    dt = DeltaTable.forPath(spark, "./data/delta/eeg_features")
+    dt.delete(col("mean_v") == 999.0)  # delete the bad row we just inserted for testing
+    print(f"Validation passed. {df.count()} rows checked.")
+    spark.stop()
 
 
-"""
-Uncomment below to insert a BAD ROW to test the validation pipeline works.
-"""
-# bad_row = spark.createDataFrame(
-#     [
-#         Row(
-#             patient_id="chb1234",
-#             channel="FP1-F7",
-#             window_start=datetime.fromtimestamp(
-#                 1776664741
-#             ),  # timestamp of when i edit this lol
-#             window_end=datetime.fromtimestamp(1776664741)
-#             + timedelta(seconds=5),  # 5 seconds later
-#             mean_v=999.0,
-#             stddev_v=0.0,
-#             min_v=999.0,
-#             max_v=999.0,
-#             spike_count=0,
-#             # alert_reason=None,
-#             event_date=date(2023, 1, 1),
-#         )
-#     ],
-#     schema=expected_schema,
-# )
-# bad_row.write.format("delta").mode("append").save("./data/delta/eeg_features")
-
-
-# test — run your validation, confirm it catches null_check and v_range_check
-df = spark.read.format("delta").load("./data/delta/eeg_features")
-validate_eeg_features(df)
-
-# delete
-dt = DeltaTable.forPath(spark, "./data/delta/eeg_features")
-dt.delete(col("mean_v") == 999.0)  # delete the bad row we just inserted for testing
-print(f"Validation passed. {df.count()} rows checked.")
-spark.stop()
+if __name__ == "__main__":
+    main()
